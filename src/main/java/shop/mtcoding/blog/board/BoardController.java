@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller.board;
+package shop.mtcoding.blog.board;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

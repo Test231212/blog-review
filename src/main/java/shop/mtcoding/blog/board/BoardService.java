@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller.board;
+package shop.mtcoding.blog.board;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

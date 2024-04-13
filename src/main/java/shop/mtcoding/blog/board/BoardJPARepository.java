@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller.board;
+package shop.mtcoding.blog.board;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
