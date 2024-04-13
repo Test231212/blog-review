@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -15,6 +16,13 @@ public class UserController {
     @GetMapping("/join-form")
     public String joinForm() {
         return "user/join-form";
+    }
+
+    @PostMapping("/login")
+    public String loginForm(UserRequest.LoginDTO reqDTO) {
+        User sessionUser = userService.로그인(reqDTO);
+        session.setAttribute("sessionUser", sessionUser);
+        return "redirect:/";
     }
 
     @GetMapping("/login-form")
