@@ -38,7 +38,10 @@ public class BoardController {
     }
 
     @GetMapping("/board/{boardId}")
-    public String detail(@PathVariable Integer boardId) {  // int 를 쓰면 값이 없으면 0, Integer 를 넣으면 값이 없을 때 null 값이 들어옴.
+    public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        Board board = boardService.boardDetail(id, sessionUser);
+        request.setAttribute("board", board);
         return "board/detail";
     }
 

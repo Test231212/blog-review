@@ -31,8 +31,8 @@ public class Board {
 //    private List<Reply> replies = new ArrayList<>();
 
 
-//    @Transient
-//    private boolean isBoardOwner ;
+    @Transient
+    private boolean isBoardOwner ;
 
 
     @Builder
