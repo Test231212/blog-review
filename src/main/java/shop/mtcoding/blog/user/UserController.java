@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.user;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,14 +14,20 @@ public class UserController {
     private final UserService userService ;
     private final HttpSession session ;
 
+    @PostMapping("/join")
+    public String join(UserRequest.JoinDTO reqDTO) {
+        userService.join(reqDTO);
+        return "redirect:/";
+    }
+
     @GetMapping("/join-form")
     public String joinForm() {
         return "user/join-form";
     }
 
     @PostMapping("/login")
-    public String loginForm(UserRequest.LoginDTO reqDTO) {
-        User sessionUser = userService.로그인(reqDTO);
+    public String login(UserRequest.LoginDTO reqDTO) {
+        User sessionUser = userService.login(reqDTO);
         session.setAttribute("sessionUser", sessionUser);
         return "redirect:/";
     }
@@ -28,6 +35,14 @@ public class UserController {
     @GetMapping("/login-form")
     public String loginForm() {
         return "user/login-form";
+    }
+
+    @PostMapping("/user/update")
+    public String update(UserRequest.UpdateDTO reqDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User newSessionUser = userService.update(sessionUser.getId(), reqDTO);
+        session.setAttribute("sessionUser", newSessionUser);
+        return "redirect:/";
     }
 
     @GetMapping("/user/update-form")
