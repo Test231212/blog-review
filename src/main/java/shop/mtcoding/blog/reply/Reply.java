@@ -26,11 +26,12 @@ public class Reply {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-//    @Transient
-//    private boolean isReplyOwner;
+    @Transient
+    private boolean isReplyOwner;
 
     @Builder
     public Reply(int id, String comment, User user, Board board, LocalDateTime createdAt) {
