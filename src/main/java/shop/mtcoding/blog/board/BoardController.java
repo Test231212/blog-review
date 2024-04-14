@@ -60,4 +60,11 @@ public class BoardController {
         request.setAttribute("board", board);
         return "board/update-form";
     }
+
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable Integer id) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        boardService.delete(id, sessionUser.getId());
+        return "redirect:/";
+    }
 }

@@ -56,4 +56,16 @@ public class BoardService {
                 .orElseThrow(() -> new Exception404("게시글이 없습니다"));
         return board;
     }
+
+    @Transactional
+    public void delete(int boardId, int sessionUserId) {
+        Board board = boardJPARepository.findById(boardId)
+                .orElseThrow(() -> new Exception404("게시글이 없습니다"));
+
+        if(sessionUserId != board.getUser().getId()){
+            throw new Exception403("권한이 없습니다");
+        }
+
+        boardJPARepository.deleteById(boardId);
+    }
 }
